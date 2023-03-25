@@ -42,7 +42,7 @@ window.onload = function() {
     let words_list = textData.split(" ");
     
     let containsAbusiveWord = false;
-    let bad_words_length = 0;
+    let bad_words_length = 10;
 
     for(let i=0; i< words_list.length; i++){
         let word = words_list[i]
@@ -52,18 +52,20 @@ window.onload = function() {
     }
     
     // If the bad_words_length is more than 1
-    let bad_words_percentage = (bad_words_length / bad_words.length).toString() + "%";
-    
-    var body = document.querySelector('body');
-    while (body.firstChild) {
-      body.removeChild(body.firstChild)
+    if (bad_words_length > 0) {
+        let bad_words_percentage = (bad_words_length / words_list.length * 100).toFixed(2) + "%";
+        
+        var body = document.querySelector('body');
+        while (body.firstChild) {
+          body.removeChild(body.firstChild)
+        }
+        
+        var warning = document.createElement('div');
+        warning.style.fontSize = "20px";
+        warning.style.margin = "10px";
+        warning.style.color = "red";
+        warning.textContent = "Warning: This webpage contains abusive content. (Abusive Words Percentage: " + bad_words_percentage + ") You are worth more than this. If you need support, please reach out to a trusted friend, family member, or mental health professional.";
+        
+        body.appendChild(warning);
     }
-    
-    var warning = document.createElement('div');
-    warning.style.fontSize = "20px";
-    warning.style.margin = "10px";
-    warning.style.color = "red";
-    warning.textContent = "Warning: This webpage contains abusive content. You are worth more than this. If you need support, please reach out to a trusted friend, family member, or mental health professional.";
-    
-    body.appendChild(warning);
 };
