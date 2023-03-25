@@ -23,8 +23,6 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-let color = '#FA96A7';
-
 window.onload = function() {
 
     // Get the text content of all paragraphs on the page
@@ -72,7 +70,11 @@ window.onload = function() {
         var warning = document.createElement('div');
         warning.style.margin = "10px";
         warning.style.color = "red";
-        warning.textContent = "This webpage contains abusive content. (Abusive Words Percentage: " + bad_words_percentage + ")";
+        warning.textContent = "This webpage contains abusive content. (Abusive Words Count: " +
+        bad_words_length +
+        ", Abusive Words Percentage: " +
+        bad_words_percentage +
+        ")";
         
         var message = document.createElement('div');
         message.style.fontSize = "20px";
